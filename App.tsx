@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Login from './src/scenes/auth/login/pages/index';
-const Stack = createStackNavigator();
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+import EmptyLayout from './src/commons/Empty';
 const App: React.FC<any> = props => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Login" component={Login} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <EmptyLayout/>
+    </Provider>
+
   );
 };
 
