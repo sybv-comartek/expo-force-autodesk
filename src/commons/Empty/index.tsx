@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { appStart } from '../../redux/actions';
-import Login from '../../scenes/auth/login/pages/index';
+import Index from '../../scenes/auth/login/pages/index';
+import StartLogin from '../../scenes/auth/login/components/StartLogin';
+import LoginScreen from '../../scenes/auth/login/components/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
@@ -19,7 +21,9 @@ const EmptyLayout = (props: any) => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Index" component={Index} options={{headerShown:false}} />
+        <Stack.Screen name="StartLogin" component={StartLogin} options={{headerShown:false}} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   )

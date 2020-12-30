@@ -1,58 +1,60 @@
-import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-
+import React,{useEffect} from 'react';
+import {styles} from './styles';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Animated,
+  Easing,
+  TouchableHighlight,
+  Text,
+} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
-}
+  navigation?:any
+}  
 
-const Login: React.FC<Props> = props => {
-  const [enthusiasmLevel, setEnthusiasmLevel] = React.useState(props.enthusiasmLevel);
-
-  const onIncrement = () => setEnthusiasmLevel((enthusiasmLevel || 0) + 1);
-  const onDecrement = () => setEnthusiasmLevel((enthusiasmLevel || 0) - 1);
-
-  const getExclamationMarks = (numChars: number) => Array(numChars + 1).join('!');
+const Login: React.FC<Props> = (props) => {
+  let rotateValueHolder = new Animated.Value(0);
+  useEffect(()=>{
+    startImageRotateFunction();
+  },[])
+  const startImageRotateFunction = () => {
+    rotateValueHolder.setValue(0);
+    Animated.timing(rotateValueHolder, {
+      toValue: 1,
+      duration: 3000,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start(() =>{
+      setTimeout(() => {
+        props.navigation.navigate("StartLogin");
+      }, 300);
+    });
+  };
+  const rotateData = rotateValueHolder.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
   return (
-    <View style={styles.root}>
-      <Text style={styles.greeting}>
-        Hello {props.name + getExclamationMarks(enthusiasmLevel || 0)}
-      </Text>
-
-      <View style={styles.buttons}>
-        <View style={styles.button}>
-          <Button title="-" onPress={onDecrement} accessibilityLabel="decrement" color="red" />
+      <SafeAreaView style={{flex: 1}}>
+        <View style={styles.container}>
+          <Animated.Image
+            style={{
+              width: 100,
+              height: 90,
+              transform: [{rotate: rotateData}],
+            }}
+            source={require('../../../../assets/img/logo.png')}
+          />
         </View>
-
-        <View style={styles.button}>
-          <Button title="+" onPress={onIncrement} accessibilityLabel="increment" color="blue" />
-        </View>
-      </View>
-    </View>
+      </SafeAreaView>
   );
 };
 
 // styles
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  buttons: {
-    flexDirection: 'row',
-    minHeight: 70,
-    alignItems: 'stretch',
-    alignSelf: 'center',
-    borderWidth: 5,
-  },
-  button: {
-    flex: 1,
-    paddingVertical: 0,
-  },
-  greeting: {
-    color: '#999',
-    fontWeight: 'bold',
-  },
-});
 
 export default Login;
