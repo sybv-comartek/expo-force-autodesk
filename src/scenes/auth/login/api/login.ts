@@ -1,7 +1,7 @@
 import {LoginInput} from '../redux/action-types'
 export const login=(input:LoginInput)=> {
     console.log(input)
-    return fetch("http://192.168.50.14:8080/login",{
+    return fetch("http://192.168.0.110:8080/login",{
               method:'post',
               headers:{
                   Accept: 'application/json',
@@ -12,10 +12,11 @@ export const login=(input:LoginInput)=> {
                   "password":input.password
               })
           })
-          .then((response)=>response.json())
           .then((response)=>{
+              console.log(response)
               return response;
           }).catch((error) => {
-              console.log("loi login");
-            });
+            console.log(error)
+            return error.response.data.message;
+        });
 }

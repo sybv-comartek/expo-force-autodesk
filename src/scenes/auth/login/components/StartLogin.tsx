@@ -11,7 +11,7 @@ export interface Props {
 const StartLogin: React.FC<Props> = props => {
   return (
     <View style={styles.container}>
-      <Image style={styles.imagehello} source={require('../../../../assets/img/imghello.svg')}/>
+      <Image style={styles.imagehello} source={require('../../../../assets/img/imghello.png')}/>
       <Text style={styles.texthello}>Xin chào!</Text>
       <Text style={styles.introduce}>Chào mừng bạn đến với</Text>
       <Text style={styles.introduce}>Force Autodesk</Text>

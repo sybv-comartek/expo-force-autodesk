@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
     },
     imagehello:{
-        width:320,
-        height:320
+        width:270,
+        height:270
     },
     texthello:{
         fontWeight:'bold',
@@ -21,7 +21,8 @@ export const styles = StyleSheet.create({
         fontWeight:'bold',
         color:"#095BA9",
         fontSize:25,
-        marginTop:30
+        marginTop:30,
+        textAlign:'center'
     },
     introduce:{
         fontSize:20,
@@ -55,7 +56,6 @@ export const styles = StyleSheet.create({
         margin:10
     },
     btngetpass:{
-        backgroundColor:'',
         borderRadius:20,
         width:width/3,
         height:40,
@@ -68,7 +68,25 @@ export const styles = StyleSheet.create({
         fontSize:18
     },
     inputlogin:{
+        backgroundColor: 'white',
         width:width-100,
-        height:30
+        marginBottom:20,
+        flexDirection: 'row',
+        alignItems:'center',
+        justifyContent:"center",
+        borderRadius: 5,
+        color: '#F5F5F5',
+    },
+    icon_user:{
+        color:"#000000",
+        fontSize:20,
+        marginLeft:20
+    },
+    inputs:{
+        height:45,
+        marginLeft:16,
+        borderBottomColor: 'black',
+        flex:1,
+        color: '#000000'
     }
 });
